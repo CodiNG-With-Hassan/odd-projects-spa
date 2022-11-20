@@ -2,8 +2,10 @@ import { InjectionToken, Provider } from '@angular/core';
 import { ActionReducer, ActionReducerMap, combineReducers } from '@ngrx/store';
 
 import { Reducers, Shared, State } from '@Models/store.model';
+import { authInitialState } from '@Modules/auth/store/auth.reducer';
 
 export const initialState: State = {
+  auth: authInitialState,
   shared: {
   },
 };
