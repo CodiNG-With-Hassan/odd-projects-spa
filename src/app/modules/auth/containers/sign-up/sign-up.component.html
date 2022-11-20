@@ -1,0 +1,167 @@
+<div class="grid mt-5">
+  <p-card class="col-offset-3 col-6">
+    <h2 class="pb-2">Sign Up!</h2>
+
+    <form
+      *ngIf="signUpFormGroup"
+      [formGroup]="signUpFormGroup"
+      class="p-fluid grid"
+    >
+      <div class="field col-12">
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon">
+            <i class="pi pi-user"></i>
+          </span>
+          <span class="p-float-label">
+            <input [formControlName]="fieldNames.FirstName" type="text" id="inputgroup" pInputText>
+            <label for="inputgroup">First Name</label>
+          </span>
+        </div>
+        <div
+          *ngIf="signUpFormGroup.get(fieldNames.FirstName)?.dirty && signUpFormGroup.get(fieldNames.FirstName)?.errors?.['required']"
+          class="text-danger mt-2"
+        >
+          This field is required
+        </div>
+        <div
+          *ngIf="signUpFormGroup.get(fieldNames.FirstName)?.dirty && signUpFormGroup.get(fieldNames.FirstName)?.errors?.['minlength']"
+          class="text-danger mt-2"
+        >
+         The first name has to be atleast {{signUpFormGroup.get(fieldNames.FirstName)?.errors?.['minlength'].requiredLength}} characters long, but it is currently {{signUpFormGroup.get(fieldNames.FirstName)?.errors?.['minlength'].actualLength}} characters long
+        </div>
+
+        <div
+          *ngIf="signUpFormGroup.get(fieldNames.FirstName)?.dirty && signUpFormGroup.get(fieldNames.FirstName)?.errors?.['maxlength']"
+          class="text-danger mt-2"
+        >
+         The first name has to be max {{signUpFormGroup.get(fieldNames.FirstName)?.errors?.['maxlength'].requiredLength}} characters long, but it is currently {{signUpFormGroup.get(fieldNames.FirstName)?.errors?.['maxlength'].actualLength}} characters long
+        </div>
+      </div>
+
+      <div class="field col-12">
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon">
+            <i class="pi pi-user"></i>
+          </span>
+          <span class="p-float-label">
+            <input [formControlName]="fieldNames.LastName" type="text" id="inputgroup" pInputText>
+            <label for="inputgroup">Last Name</label>
+          </span>
+        </div>
+        <div
+          *ngIf="signUpFormGroup.get(fieldNames.LastName)?.dirty && signUpFormGroup.get(fieldNames.LastName)?.errors?.['required']"
+          class="text-danger mt-2"
+        >
+          This field is required
+        </div>
+
+        <div
+          *ngIf="signUpFormGroup.get(fieldNames.LastName)?.dirty && signUpFormGroup.get(fieldNames.LastName)?.errors?.['minlength']"
+          class="text-danger mt-2"
+        >
+         The last name has to be atleast {{signUpFormGroup.get(fieldNames.LastName)?.errors?.['minlength'].requiredLength}} characters long, but it is currently {{signUpFormGroup.get(fieldNames.LastName)?.errors?.['minlength'].actualLength}} characters long
+        </div>
+
+        <div
+          *ngIf="signUpFormGroup.get(fieldNames.LastName)?.dirty && signUpFormGroup.get(fieldNames.LastName)?.errors?.['maxlength']"
+          class="text-danger mt-2"
+        >
+        The last name has to be atleast {{signUpFormGroup.get(fieldNames.LastName)?.errors?.['maxlength'].requiredLength}} characters long, but it is currently {{signUpFormGroup.get(fieldNames.LastName)?.errors?.['maxlength'].actualLength}} characters long
+        </div>
+      </div>
+
+      <div class="field col-12">
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon">
+            <i class="pi pi-user"></i>
+          </span>
+          <span class="p-float-label">
+            <input [formControlName]="fieldNames.Username" type="text" id="inputgroup" pInputText>
+            <label for="inputgroup">Username</label>
+          </span>
+        </div>
+        <div
+          *ngIf="signUpFormGroup.get(fieldNames.Username)?.dirty && signUpFormGroup.get(fieldNames.Username)?.errors?.['required']"
+          class="text-danger mt-2"
+        >
+          This field is required
+        </div>
+        <div
+          *ngIf="signUpFormGroup.get(fieldNames.Username)?.dirty && signUpFormGroup.get(fieldNames.Username)?.errors?.['minlength']"
+          class="text-danger mt-2"
+        >
+          The username has to be atleast {{signUpFormGroup.get(fieldNames.Username)?.errors?.['minlength'].requiredLength}} characters long, but it is currently {{signUpFormGroup.get(fieldNames.Username)?.errors?.['minlength'].actualLength}} characters long
+        </div>
+      </div>
+
+      <div class="field col-12">
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon">
+            <i class="pi pi-envelope"></i>
+          </span>
+          <span class="p-float-label">
+            <input [formControlName]="fieldNames.Email" type="text" id="inputgroup" pInputText>
+            <label for="inputgroup">Email</label>
+          </span>
+        </div>
+        <div
+          *ngIf="signUpFormGroup.get(fieldNames.Email)?.errors?.['email']"
+          class="text-danger mt-2"
+        >
+          Email is not valid
+        </div>
+        <div
+          *ngIf="signUpFormGroup.get(fieldNames.Email)?.dirty && signUpFormGroup.get(fieldNames.Email)?.errors?.['required']"
+          class="text-danger mt-2"
+        >
+          This field is required
+        </div>
+      </div>
+
+      <div class="field col-12">
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon">
+            <i class="pi pi-lock"></i>
+          </span>
+          <span class="p-float-label">
+            <p-password
+              [formControlName]="fieldNames.Password"
+              [toggleMask]="true"
+              styleClass="p-password p-component p-inputwrapper p-input-icon-right"
+            >
+              <ng-template pTemplate="header">
+                <h6>Pick a password</h6>
+              </ng-template>
+              <ng-template pTemplate="footer">
+                <p-divider></p-divider>
+                <p class="mt-2">Suggestions</p>
+                <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
+                  <li>At least one lowercase</li>
+                  <li>At least one uppercase</li>
+                  <li>At least one numeric</li>
+                  <li>Minimum 8 characters</li>
+                </ul>
+              </ng-template>
+            </p-password>
+            <label for="inputgroup">Password</label>
+          </span>
+        </div>
+      </div>
+
+      <div class="flex justify-content-center col-12">
+        <p>
+          Already have an account? <a routerLink="/auth/sign-in">Sign in!</a>
+        </p>
+      </div>
+
+      <div class="col-12 flex justify-content-center">
+        <ngt-submit-button
+          [form]="signUpFormGroup"
+          [pending]="!!(pending$ | async)"
+          label="Sign Up"
+          (submitForm)="submitForm()"
+        ></ngt-submit-button>
+      </div>
+    </form>
+  </p-card>
+</div>

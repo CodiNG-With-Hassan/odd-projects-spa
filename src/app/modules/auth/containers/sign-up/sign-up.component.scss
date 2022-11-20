@@ -1,0 +1,11 @@
+.text-danger {
+  color: #f44336;
+}
+
+:host {
+  ::ng-deep {
+    .p-inputtext.p-component, .p-password.p-component {
+      width: 100%;
+    }
+  }
+}
