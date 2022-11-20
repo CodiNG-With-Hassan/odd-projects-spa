@@ -1,0 +1,80 @@
+<div class="grid mt-5">
+  <p-card class="col-offset-3 col-6">
+    <h2 class="pb-2">Sign In!</h2>
+
+    <form
+      *ngIf="signInFormGroup"
+      [formGroup]="signInFormGroup"
+      class="p-fluid grid"
+    >
+      <div class="field col-12">
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon">
+            <i class="pi pi-user"></i>
+          </span>
+          <span class="p-float-label">
+            <input [formControlName]="fieldNames.Identity" type="text" id="inputgroup" pInputText>
+            <label for="inputgroup">Username</label>
+          </span>
+        </div>
+        <div
+          *ngIf="signInFormGroup.get(fieldNames.Identity)?.dirty && signInFormGroup.get(fieldNames.Identity)?.errors?.['required']"
+          class="text-danger mt-2"
+        >
+          This field is required
+        </div>
+        <div
+          *ngIf="signInFormGroup.get(fieldNames.Identity)?.dirty && signInFormGroup.get(fieldNames.Identity)?.errors?.['minlength']"
+          class="text-danger mt-2"
+        >
+          The username has to be atleast {{signInFormGroup.get(fieldNames.Identity)?.errors?.['minlength'].requiredLength}} characters long, but it is currently {{signInFormGroup.get(fieldNames.Identity)?.errors?.['minlength'].actualLength}} characters long
+        </div>
+      </div>
+
+      <div class="field col-12">
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon">
+            <i class="pi pi-lock"></i>
+          </span>
+          <span class="p-float-label">
+            <p-password
+              [formControlName]="fieldNames.Password"
+              [toggleMask]="true"
+              styleClass="p-password p-component p-inputwrapper p-input-icon-right"
+            >
+              <ng-template pTemplate="header">
+                <h6>Pick a password</h6>
+              </ng-template>
+              <ng-template pTemplate="footer">
+                <p-divider></p-divider>
+                <p class="mt-2">Suggestions</p>
+                <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
+                  <li>At least one lowercase</li>
+                  <li>At least one uppercase</li>
+                  <li>At least one numeric</li>
+                  <li>Minimum 8 characters</li>
+                </ul>
+              </ng-template>
+            </p-password>
+            <label for="inputgroup">Password</label>
+          </span>
+        </div>
+      </div>
+
+      <div class="flex justify-content-center col-12">
+        <p>
+          Don't have an account? <a routerLink="/auth/sign-up">Sign up!</a>
+        </p>
+      </div>
+
+      <div class="col-12 flex justify-content-center">
+        <ngt-submit-button
+          [form]="signInFormGroup"
+          [pending]="!!(pending$ | async)"
+          label="Sign In"
+          (submitForm)="submitForm()"
+        ></ngt-submit-button>
+      </div>
+    </form>
+  </p-card>
+</div>
