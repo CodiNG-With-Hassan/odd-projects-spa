@@ -12,7 +12,7 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "ngt",
+      "prefix": "odd",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",

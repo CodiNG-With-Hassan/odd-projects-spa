@@ -17,13 +17,13 @@
       <div *ngIf="editMode" class="flex justify-content-between p-3">
         <h2 class="m-0">Edit Profile</h2>
 
-        <ngt-submit-button
+        <odd-submit-button
           [form]="editProfileForm"
           [pending]="!!(pending$ | async)"
           label="Save"
           icon="pi pi-save"
           (submitForm)="submitForm()"
-        ></ngt-submit-button>
+        ></odd-submit-button>
 
       </div>
     </ng-template>

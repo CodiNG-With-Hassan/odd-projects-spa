@@ -5,7 +5,7 @@ import { AuthFacade } from '@Modules/auth/store/auth.facade';
 import { Observable, tap } from 'rxjs';
 
 @Component({
-  selector: 'ngt-sign-in',
+  selector: 'odd-sign-in',
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.scss'],
 })

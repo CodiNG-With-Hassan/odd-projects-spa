@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'ngt-submit-button',
+  selector: 'odd-submit-button',
   templateUrl: './submit-button.component.html',
   styleUrls: ['./submit-button.component.scss'],
 })

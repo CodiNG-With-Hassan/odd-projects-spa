@@ -31,7 +31,7 @@
           "error",
           {
             "type": ["element", "attribute"],
-            "prefix": "ngt",
+            "prefix": "odd",
             "style": "kebab-case"
           }
         ],
@@ -39,7 +39,7 @@
           "error",
           {
             "type": "attribute",
-            "prefix": "ngt",
+            "prefix": "odd",
             "style": "camelCase"
           }
         ],

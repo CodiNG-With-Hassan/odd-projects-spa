@@ -6,7 +6,7 @@ import { UserFacade } from '@Modules/users/store/users.facade';
 import { Observable, tap } from 'rxjs';
 
 @Component({
-  selector: 'ngt-user',
+  selector: 'odd-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

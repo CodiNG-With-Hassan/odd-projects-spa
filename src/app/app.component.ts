@@ -8,7 +8,7 @@ import { Profile } from '@Models/profile.model';
 import { ErrorFacade } from '@Store/error/error.facade';
 
 @Component({
-  selector: 'ngt-root',
+  selector: 'odd-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })

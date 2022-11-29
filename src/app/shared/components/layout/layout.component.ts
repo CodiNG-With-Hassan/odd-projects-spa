@@ -6,7 +6,7 @@ import {MenuItem} from 'primeng/api';
 import { filter, tap } from 'rxjs';
 
 @Component({
-  selector: 'ngt-layout',
+  selector: 'odd-layout',
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss'],
 })
