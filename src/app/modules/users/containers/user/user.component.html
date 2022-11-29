@@ -1,0 +1,184 @@
+<div class="grid mt-5 mx-0" *ngrxLet="userFacade.selectUser$ as user">
+  <p-card
+    class="col-offset-3 col-6"
+  >
+    <ng-template pTemplate="header">
+      <div *ngIf="!editMode" class="flex justify-content-between p-3">
+        <h2 class="m-0">Profile</h2>
+
+        <p-button
+          label="Edit"
+          icon="pi pi-pencil"
+          iconPos="left"
+          (onClick)="enableEditMode()"
+        ></p-button>
+      </div>
+
+      <div *ngIf="editMode" class="flex justify-content-between p-3">
+        <h2 class="m-0">Edit Profile</h2>
+
+        <ngt-submit-button
+          [form]="editProfileForm"
+          [pending]="!!(pending$ | async)"
+          label="Save"
+          icon="pi pi-save"
+          (submitForm)="submitForm()"
+        ></ngt-submit-button>
+
+      </div>
+    </ng-template>
+
+    <div *ngIf="!editMode" class="grid">
+      <div class="col-6 text-center flex flex-column">
+        <p>
+          First Name:
+        </p>
+
+        {{user.firstName}}
+      </div>
+
+      <div class="col-6 text-center flex-column">
+        <p>
+          Last Name:
+        </p>
+
+        {{user.lastName}}
+      </div>
+
+      <div class="col-6 text-center flex-column">
+      <p>
+        Email:
+      </p>
+
+      {{user.email}}
+      </div>
+
+      <div class="col-6 text-center flex-column">
+        <p>
+          Username:
+        </p>
+
+        {{user.username}}
+      </div>
+    </div>
+
+    <div *ngIf="editMode" class="grid">
+      <form
+        *ngIf="editProfileForm"
+        [formGroup]="editProfileForm"
+        class="p-fluid grid"
+      >
+        <div class="field col-12">
+          <div class="p-inputgroup">
+            <span class="p-inputgroup-addon">
+              <i class="pi pi-user"></i>
+            </span>
+            <span class="p-float-label">
+              <input [formControlName]="fieldNames.FirstName" type="text" id="inputgroup" pInputText>
+              <label for="inputgroup">First Name</label>
+            </span>
+          </div>
+          <div
+            *ngIf="editProfileForm.get(fieldNames.FirstName)?.dirty && editProfileForm.get(fieldNames.FirstName)?.errors?.['required']"
+            class="text-danger mt-2"
+          >
+            This field is required
+          </div>
+          <div
+            *ngIf="editProfileForm.get(fieldNames.FirstName)?.dirty && editProfileForm.get(fieldNames.FirstName)?.errors?.['minlength']"
+            class="text-danger mt-2"
+          >
+          The first name has to be atleast {{editProfileForm.get(fieldNames.FirstName)?.errors?.['minlength'].requiredLength}} characters long, but it is currently {{editProfileForm.get(fieldNames.FirstName)?.errors?.['minlength'].actualLength}} characters long
+          </div>
+
+          <div
+            *ngIf="editProfileForm.get(fieldNames.FirstName)?.dirty && editProfileForm.get(fieldNames.FirstName)?.errors?.['maxlength']"
+            class="text-danger mt-2"
+          >
+          The first name has to be max {{editProfileForm.get(fieldNames.FirstName)?.errors?.['maxlength'].requiredLength}} characters long, but it is currently {{editProfileForm.get(fieldNames.FirstName)?.errors?.['maxlength'].actualLength}} characters long
+          </div>
+        </div>
+
+        <div class="field col-12">
+          <div class="p-inputgroup">
+            <span class="p-inputgroup-addon">
+              <i class="pi pi-user"></i>
+            </span>
+            <span class="p-float-label">
+              <input [formControlName]="fieldNames.LastName" type="text" id="inputgroup" pInputText>
+              <label for="inputgroup">Last Name</label>
+            </span>
+          </div>
+          <div
+            *ngIf="editProfileForm.get(fieldNames.LastName)?.dirty && editProfileForm.get(fieldNames.LastName)?.errors?.['required']"
+            class="text-danger mt-2"
+          >
+            This field is required
+          </div>
+
+          <div
+            *ngIf="editProfileForm.get(fieldNames.LastName)?.dirty && editProfileForm.get(fieldNames.LastName)?.errors?.['minlength']"
+            class="text-danger mt-2"
+          >
+          The last name has to be atleast {{editProfileForm.get(fieldNames.LastName)?.errors?.['minlength'].requiredLength}} characters long, but it is currently {{editProfileForm.get(fieldNames.LastName)?.errors?.['minlength'].actualLength}} characters long
+          </div>
+
+          <div
+            *ngIf="editProfileForm.get(fieldNames.LastName)?.dirty && editProfileForm.get(fieldNames.LastName)?.errors?.['maxlength']"
+            class="text-danger mt-2"
+          >
+          The last name has to be atleast {{editProfileForm.get(fieldNames.LastName)?.errors?.['maxlength'].requiredLength}} characters long, but it is currently {{editProfileForm.get(fieldNames.LastName)?.errors?.['maxlength'].actualLength}} characters long
+          </div>
+        </div>
+
+        <div class="field col-12">
+          <div class="p-inputgroup">
+            <span class="p-inputgroup-addon">
+              <i class="pi pi-user"></i>
+            </span>
+            <span class="p-float-label">
+              <input [formControlName]="fieldNames.Username" type="text" id="inputgroup" pInputText>
+              <label for="inputgroup">Username</label>
+            </span>
+          </div>
+          <div
+            *ngIf="editProfileForm.get(fieldNames.Username)?.dirty && editProfileForm.get(fieldNames.Username)?.errors?.['required']"
+            class="text-danger mt-2"
+          >
+            This field is required
+          </div>
+          <div
+            *ngIf="editProfileForm.get(fieldNames.Username)?.dirty && editProfileForm.get(fieldNames.Username)?.errors?.['minlength']"
+            class="text-danger mt-2"
+          >
+            The username has to be atleast {{editProfileForm.get(fieldNames.Username)?.errors?.['minlength'].requiredLength}} characters long, but it is currently {{editProfileForm.get(fieldNames.Username)?.errors?.['minlength'].actualLength}} characters long
+          </div>
+        </div>
+
+        <div class="field col-12">
+          <div class="p-inputgroup">
+            <span class="p-inputgroup-addon">
+              <i class="pi pi-envelope"></i>
+            </span>
+            <span class="p-float-label">
+              <input [formControlName]="fieldNames.Email" type="text" id="inputgroup" pInputText>
+              <label for="inputgroup">Email</label>
+            </span>
+          </div>
+          <div
+            *ngIf="editProfileForm.get(fieldNames.Email)?.errors?.['email']"
+            class="text-danger mt-2"
+          >
+            Email is not valid
+          </div>
+          <div
+            *ngIf="editProfileForm.get(fieldNames.Email)?.dirty && editProfileForm.get(fieldNames.Email)?.errors?.['required']"
+            class="text-danger mt-2"
+          >
+            This field is required
+          </div>
+        </div>
+      </form>
+    </div>
+  </p-card>
+</div>
