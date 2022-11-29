@@ -10,6 +10,7 @@ export class SubmitButtonComponent {
   @Input() form!: FormGroup;
   @Input() pending: boolean = false;
   @Input() label: string = '';
+  @Input() icon: string = '';
 
   @Output() submitForm: EventEmitter<boolean> = new EventEmitter<boolean>();
 

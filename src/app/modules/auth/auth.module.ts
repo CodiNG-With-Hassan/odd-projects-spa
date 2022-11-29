@@ -18,6 +18,9 @@ import { AuthEffects } from './store/auth.effects';
 import { AuthFacade } from './store/auth.facade';
 import { AuthRepository } from './shared/auth.repository';
 import { SharedModule } from 'app/shared/shared.module';
+import { UserEffects } from '@Modules/users/store/users.effects';
+import { userReducer } from '@Modules/users/store/users.reducer';
+import { ToastModule } from 'primeng/toast';
 
 const primengModules: ModuleType = [
   CardModule,
@@ -25,6 +28,7 @@ const primengModules: ModuleType = [
   ButtonModule,
   PasswordModule,
   DividerModule,
+  ToastModule,
 ];
 
 @NgModule({
@@ -37,8 +41,9 @@ const primengModules: ModuleType = [
     ReactiveFormsModule,
     SharedModule,
     FormsModule,
-    EffectsModule.forFeature([AuthEffects]),
+    EffectsModule.forFeature([AuthEffects, UserEffects]),
     StoreModule.forFeature(ModuleRoutes.Auth, authReducer),
+    StoreModule.forFeature(ModuleRoutes.User, userReducer),
     CommonModule,
     ...primengModules,
   ],

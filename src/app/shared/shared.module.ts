@@ -9,6 +9,8 @@ import { ModuleType } from '@Types/module.type';
 import {AvatarModule} from 'primeng/avatar';
 import { SubmitButtonComponent } from './components/submit-button/submit-button.component';
 import { ButtonModule } from 'primeng/button';
+import { UserFacade } from '@Modules/users/store/users.facade';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const PrimengModules: ModuleType = [
   MenubarModule,
@@ -26,6 +28,11 @@ const PrimengModules: ModuleType = [
     PrimengModules,
     CommonModule,
     TranslateModule.forChild(),
+    ReactiveFormsModule,
+    FormsModule,
+  ],
+  providers: [
+    UserFacade,
   ],
   exports: [
     LayoutComponent,

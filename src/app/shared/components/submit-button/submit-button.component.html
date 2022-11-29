@@ -1,7 +1,7 @@
 <p-button
   [disabled]="form.invalid || pending === true"
   (onClick)="submit()"
-  [icon]="pending === true ? 'pi pi-spin pi-spinner' : ''"
+  [icon]="pending === true ? 'pi pi-spin pi-spinner' : icon"
   iconPos="left"
   [label]="label"
   type="button"
