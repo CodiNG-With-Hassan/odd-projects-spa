@@ -24,6 +24,7 @@ import { ErrorFacade } from '@Store/error/error.facade';
 import { MessageService } from 'primeng/api';
 import { ErrorEffects } from '@Store/error/error.effects';
 import { ERROR_HANDLING_INTERCEPTOR_PROVIDER } from './shared/interceptors/error-handling.interceptor';
+import { AccessGuard } from './core/guards/access.guard';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { ERROR_HANDLING_INTERCEPTOR_PROVIDER } from './shared/interceptors/error
     ErrorFacade,
     MessageService,
     ERROR_HANDLING_INTERCEPTOR_PROVIDER,
+    AccessGuard,
   ],
   bootstrap: [AppComponent],
 })

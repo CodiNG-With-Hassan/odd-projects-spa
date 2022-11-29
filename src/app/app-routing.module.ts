@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppRoutes, ModuleRoutes } from '@Enums/routes.enum';
 import { ModuleType } from '@Types/module.type';
+import { AccessGuard } from './core/guards/access.guard';
 
 import { NotFoundComponent } from './shared/pages/not-found/not-found.component';
 
@@ -14,6 +15,7 @@ const routes: Routes = [
   },
   {
     path: ModuleRoutes.Home,
+    canActivate: [AccessGuard],
     loadChildren: (): Promise<ModuleType> => import('./modules/home/home.module')
       .then((module: ModuleType): ModuleType => module.HomeModule),
   },
@@ -24,11 +26,13 @@ const routes: Routes = [
   },
   {
     path: ModuleRoutes.User,
+    canActivate: [AccessGuard],
     loadChildren: (): Promise<ModuleType> => import('./modules/users/users.module')
       .then((module: ModuleType): ModuleType => module.UsersModule),
   },
   {
     path: ModuleRoutes.Projects,
+    canActivate: [AccessGuard],
     loadChildren: (): Promise<ModuleType> => import('./modules/projects/projects.module')
       .then((module: ModuleType): ModuleType => module.ProjectsModule),
   },
