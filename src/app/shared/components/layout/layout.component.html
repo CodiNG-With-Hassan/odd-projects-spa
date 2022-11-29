@@ -2,7 +2,38 @@
   <ng-template pTemplate="start">
     <img class="border-circle mr-2" src="assets/images/logo.ico" height="40">
   </ng-template>
+
   <ng-template pTemplate="end">
-    <p-avatar icon="pi pi-user" shape="circle"></p-avatar>
+    <div
+      *ngIf="
+        !accessTokenService.isLoggedIn()
+        && !onAuthRoute
+      "
+      class="flex"
+    >
+      <p-button
+        class="mr-3"
+        label="Sign In"
+        [routerLink]="['auth', 'sign-in']"
+      ></p-button>
+
+      <p-button
+        label="Sign Up"
+        [routerLink]="['auth', 'sign-up']"
+      ></p-button>
+    </div>
+
+    <div
+      class="flex"
+      *ngIf="accessTokenService.isLoggedIn()"
+    >
+      <p-avatar
+        icon="pi pi-user"
+        shape="circle"
+        class="cursor-pointer"
+        [routerLink]="['user']"
+      ></p-avatar>
+      <p class="my-auto mx-2">Welcome back {{(userFacade.selectUser$ | async)?.username}}</p>
+    </div>
   </ng-template>
 </p-menubar>
